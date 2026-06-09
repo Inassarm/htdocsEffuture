@@ -2,7 +2,7 @@
 // Iniciamos sesión para poder leer los datos guardados
 session_start();
 
-// Si por alguna razón la sesión está vacía (no se registró), lo echamos
+// Si por alguna razón la sesión está vacía, lo echamos
 if (!isset($_SESSION["personal"])) {
     header("Location: registro.html");
     exit(); 

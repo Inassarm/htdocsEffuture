@@ -30,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // 3. Verificamos la contraseña encriptada
             if (password_verify($contra, $contraBD)) {
                 
-                // Guardamos ambos datos en la sesión para que no falle privado.php
                 $_SESSION["personal"] = $nom; 
                 $_SESSION["correo"] = $ema; 
 

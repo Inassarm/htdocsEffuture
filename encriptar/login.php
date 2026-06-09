@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 //redireccionar a otro doc
                 header("location:privado.php");
-                exit(); // Buena práctica: detiene la ejecución del script después de redireccionar
+                exit(); 
 
             }
             else
@@ -53,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 } else {
     // Si alguien entra directo a login.php sin pasar por el formulario
-    echo "Por favor, inicia sesión desde el formulario.";
+    echo "Por favor, inicia sesión desde el formulario. <a href='index.html'>Ir al Inicio</a>";
 }
+
 ?>

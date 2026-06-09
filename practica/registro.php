@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -18,10 +17,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO personal (nom_per, email_per, pass_per) VALUES ('$nom', '$ema', '$contra')";
 
     if ($conexion->query($sql)) {
-        $_SESSION["personal"] = $nom;
-        $_SESSION["correo"] = $ema; 
-
-        echo "<br><b style='color:green;'>Persona registrada correctamente. <a href='privado.php'>Ir a mi Perfil</a></b>";
+        $conexion->close();
+        
+        header("Location: entrar.html");
+        exit(); 
+        
     } else {
         echo "<br>Error en la base de datos: " . $conexion->error;
     }

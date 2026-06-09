@@ -4,7 +4,7 @@ session_start();
 // Validamos que existan 
 if (!isset($_SESSION["personal"]) || !isset($_SESSION["correo"])) {
     // Si no existen, redirigimos al registro
-    header("Location: registro.php");
+    header("Location: registro.html");
     exit(); 
 }
 ?>
