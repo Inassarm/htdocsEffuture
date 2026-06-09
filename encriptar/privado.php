@@ -27,3 +27,7 @@ if (!isset($_SESSION["personal"]) || !isset($_SESSION["correo"])) {
 
 </body>
 </html>
+
+
+
+

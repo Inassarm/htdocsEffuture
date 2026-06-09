@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // vamos a ver si hay más de una coincidencia
     if ($resultado->num_rows > 0) {
 
-        // Cambiado fetch_assoc por el foreach de tu ejemplo
+      
         foreach ($resultado as $fila) {
             $id = $fila["id_per"];
             $nom = $fila["nom_per"];
