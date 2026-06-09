@@ -1,14 +1,29 @@
 <?php
-// 1. Iniciamos la sesión siempre al principio
 session_start();
 
-// 2. Comprobamos si la variable de sesión "clientes" existe y no es nula
-if (isset($_SESSION["clientes"])) {
-    $nom = $_SESSION["clientes"];
-    echo "Hola $nom";
-} else {
-    // 3. Si la sesión no está creada, te mando al login
-    header("Location: login.html");
-    exit(); // Es muy importante poner exit() para detener la ejecución del script aquí
+// Validamos que existan 
+if (!isset($_SESSION["personal"]) || !isset($_SESSION["correo"])) {
+    // Si no existen, redirigimos al registro
+    header("Location: registro.php");
+    exit(); 
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Perfil</title>
+</head>
+<body>
+
+    <h1>¡Bienvenido a tu perfil!</h1>
+
+    <p><strong>Nombre:</strong> <?php echo ($_SESSION["personal"]); ?></p>
+    <p><strong>Correo Electrónico:</strong> <?php echo ($_SESSION["correo"]); ?></p>
+
+    <br>
+    <a href="logout.php">Cerrar Sesión</a>
+
+</body>
+</html>
