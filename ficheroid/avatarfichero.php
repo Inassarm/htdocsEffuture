@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // 5. Crear la carpeta 
         mkdir($ruta_carpeta, 0777, true);
 
-        // 6. Escribir algo simple dentro de la carpeta
+        // 6. Escribir algo dentro de la carpeta
         $ruta_archivo = $ruta_carpeta . "/datos.txt";
         $contenido = "ID: " . $id_persona . " - Nombre: " . $nombre;
         
