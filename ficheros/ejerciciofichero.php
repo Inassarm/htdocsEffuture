@@ -8,7 +8,8 @@ echo $arc;
 $arctemporal = $_FILES["archivo"] ["tmp_name"];
 echo "$arctemporal<br>";
 
-move_uploaded_file($arctemporal, "./ficheros$arc");
+move_uploaded_file($arctemporal, "./ficheros/$arc");
+
 
 
 if ($arc != "") { 

@@ -1,0 +1,4 @@
+¡Bienvenido/a, test4!
+Tu ID de usuario es: 50
+Tu correo registrado es: test4@gmail.com
+Fecha de registro: 2026-06-10 12:23:43
