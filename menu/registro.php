@@ -7,6 +7,12 @@
 		include("conexion.php");
 		$sql = "INSERT INTO personal (nom_per, email_per, pass_per) VALUES ('$nom', '$ema', '$pas')";
 		$con->query($sql);
+		//para saber la id que acabo de grabar:
+		$id = $con->insert_id;
+
+		//como creo la carpeta: 
+		mkdir("./avatares/$id", 0777);
+
 		header("location:gracias.php");
 	}
 ?>
