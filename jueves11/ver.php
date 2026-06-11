@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ver Imágenes</title>
 </head>
 <body>
     <a href="index.html">Inicio</a>
@@ -13,26 +13,20 @@
     <h1>Imágenes</h1>
 
     <?php
-
         include("conexion.php");
-        $sql = "SELECT nom_ima FROM imagenes";
+        
+        $sql = "SELECT id_cli, nom_ima FROM imagenes WHERE id_cli <> '0'";
         $resultado = $con->query($sql);
+        
         foreach($resultado as $fila)
         {
+            $id = $fila["id_cli"];
             $nombre = $fila["nom_ima"];
-            echo "<p><img src='./archivos/$nombre' width=200 ></p>";
-
+            
+            // Dibujamos la imagen con la ruta correcta
+            echo "<p><img src='./archivos/$id/$nombre' width='200'></p>";
         }
-
-
     ?>
-    <p>Imagen 1</p>
-    <p>Imagen 2</p>
-
     
 </body>
 </html>
-
-
-
-
