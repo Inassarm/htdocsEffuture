@@ -1,21 +1,77 @@
 <?php
-// Conexión a la base de datos
+// Conectamos a la base de datos
 $con = new mysqli("localhost", "root", "", "tienda");
 
 if ($con->connect_error) {
     die("Error de conexión: " . $con->connect_error);
+}
+
+// BORRAR UN PRODUCTO
+if (isset($_GET['eliminar_id'])) {
+    $id_borrar = $_GET['eliminar_id'];
+    $con->query("DELETE FROM cesta WHERE id_cesta = $id_borrar");
+    header("Location: carrito.php");
+    exit();
+}
+
+
+// AÑADIR O INCREMENTAR UN PRODUCTO 
+if (isset($_GET['id_prod'])) {
+    $id_producto = $_GET['id_prod'];
+    
+    $consulta = "SELECT id_cesta, cantidad FROM cesta WHERE id_producto = $id_producto";
+    $resultado_busqueda = $con->query($consulta);
+    
+    if ($resultado_busqueda->num_rows > 0) {
+        $fila = $resultado_busqueda->fetch_assoc();
+        $nueva_cantidad = $fila['cantidad'] + 1;
+        $id_cesta = $fila['id_cesta'];
+        $con->query("UPDATE cesta SET cantidad = $nueva_cantidad WHERE id_cesta = $id_cesta");
+    } else {
+        $con->query("INSERT INTO cesta (id_producto, cantidad) VALUES ($id_producto, 1)");
+    }
+    header("Location: carrito.php");
+    exit();
+}
+
+//ACTUALIZAR CANTIDAD DESDE EL CARRITO
+
+if (isset($_GET['id_cesta']) && isset($_GET['accion'])) {
+    $id_cesta = $_GET['id_cesta'];
+    $accion = $_GET['accion'];
+
+    // Primero consultamos cuántos productos hay actualmente en esa fila
+    $consulta_cant = $con->query("SELECT cantidad FROM cesta WHERE id_cesta = $id_cesta");
+    $fila_cant = $consulta_cant->fetch_assoc();
+    $cantidad_actual = $fila_cant['cantidad'];
+
+    if ($accion == 'sumar') {
+        $nueva_cantidad = $cantidad_actual + 1;
+        $con->query("UPDATE cesta SET cantidad = $nueva_cantidad WHERE id_cesta = $id_cesta");
+    } 
+    
+    if ($accion == 'restar') {
+        $nueva_cantidad = $cantidad_actual - 1;
+        
+        // Si la cantidad baja de 1, lo borramos automáticamente de la cesta
+        if ($nueva_cantidad < 1) {
+            $con->query("DELETE FROM cesta WHERE id_cesta = $id_cesta");
+        } else {
+            $con->query("UPDATE cesta SET cantidad = $nueva_cantidad WHERE id_cesta = $id_cesta");
+        }
+    }
+
+    header("Location: carrito.php");
+    exit();
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda - Catálogo de Productos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
+    <title>Mi Cesta</title>
+<style>
+    :root {
             --primary-color: #2ecc71;
             --primary-hover: #27ae60;
             --dark-color: #2c3e50;
@@ -208,56 +264,65 @@ if ($con->connect_error) {
             font-size: 1.2rem;
             box-shadow: var(--shadow);
         }
+
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Catálogo de Productos</h1>
-            <div class="nav-buttons">
-                <a href="administracion.php" class="btn btn-admin">⚙️ Administración</a>
-                <a href="carrito.php" class="btn btn-cart">🛒 Ver mi Cesta</a>
-            </div>
-        </header>
+    <h1>🛒 Tu Cesta de Compras</h1>
+    <a href="index.php">⬅️ Volver al catálogo</a>
+    <br><br>
 
-        <main class="products-grid">
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
             <?php
-            $sql = "SELECT id_producto, nombre, descripcion, precio, imagen FROM compras ORDER BY nombre ASC";
-            $resultado = $con->query($sql);
+            // 3. LÓGICA PARA MOSTRAR LOS PRODUCTOS
+            $sql = "SELECT c.id_cesta, p.nombre, p.precio, c.cantidad 
+                    FROM cesta c 
+                    INNER JOIN compras p ON c.id_producto = p.id_producto";
+            
+            $resultado_tabla = $con->query($sql);
+            $total_general = 0;
 
-            if ($resultado && $resultado->num_rows > 0) {
-                foreach($resultado as $fila) {
-                    // Sanitizamos los datos para evitar problemas con caracteres especiales
-                    $id   = htmlspecialchars($fila["id_producto"]);
-                    $nom  = htmlspecialchars($fila["nombre"]);
-                    $desc = htmlspecialchars($fila["descripcion"]);
-                    $img  = htmlspecialchars($fila["imagen"]);
-                    // Formateamos el precio correctamente con dos decimales
-                    $pre  = number_format($fila["precio"], 2, ',', '.');
-                    
-                    echo "
-                    <article class='product-card'>
-                        <div class='product-image-wrapper'>
-                            <img src='./archivos2/$id/$img' alt='$nom' loading='lazy'>
-                        </div>
-                        <div class='product-info'>
-                            <h2 class='product-name'>$nom</h2>
-                            <p class='product-desc'>$desc</p>
-                            <div class='product-footer'>
-                                <span class='product-price'>$pre €</span>
-                                <a href='carrito.php?id_prod=$id' class='btn-add'>➕ Añadir</a>
-                            </div>
-                        </div>
-                    </article>";
-                }
-            } else {
-                echo "<div class='no-products'>Visualmente no encontramos productos disponibles en este momento.</div>";
+            while ($fila = $resultado_tabla->fetch_assoc()) {
+                $nombre_prod = $fila['nombre'];
+                $precio_prod = $fila['precio'];
+                $cantidad_prod = $fila['cantidad'];
+                $id_cesta_prod = $fila['id_cesta'];
+                
+                $subtotal = $precio_prod * $cantidad_prod;
+                $total_general = $total_general + $subtotal;
+                
+                echo "<tr>";
+                echo "<td>" . $nombre_prod . "</td>";
+                echo "<td>$" . $precio_prod . "</td>";
+                echo "<td align='center'>";
+                echo "<a href='carrito.php?id_cesta=" . $id_cesta_prod . "&accion=restar' style='text-decoration:none; font-weight:bold; color:black;'> ➖ </a>";
+                echo " <strong>" . $cantidad_prod . "</strong> ";
+                echo "<a href='carrito.php?id_cesta=" . $id_cesta_prod . "&accion=sumar' style='text-decoration:none; font-weight:bold; color:black;'> ➕ </a>";
+                echo "</td>";
+                
+                echo "<td>$" . $subtotal . "</td>";
+                echo "<td><a href='carrito.php?eliminar_id=" . $id_cesta_prod . "' style='color:red;'>❌ Eliminar</a></td>";
+                echo "</tr>";
             }
-            $con->close();
             ?>
-        </main>
-    </div>
+            
+            <tr>
+                <td colspan="3" align="right"><strong>Total:</strong></td>
+                <td colspan="2"><strong>$<?php echo $total_general; ?></strong></td>
+            </tr>
+        </tbody>
+    </table>
 
 </body>
 </html>
