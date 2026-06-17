@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!-- fuentes -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<style>
+		body
+		{
+			background-color: dimgrey;
+			color: white;
+			font-family: "Raleway", sans-serif;
+			font-optical-sizing: auto;
+			font-weight: <weight>;
+			font-style: normal;
+		}
+
+		a
+		{
+			color: hotpink;
+		}
+
+		a:hover
+		{
+			color: white;
+		}
+
+		input, textarea
+		{
+			width: 60%;
+		}
+
+		button
+		{
+			background-color: hotpink;
+			color: white;
+			border-radius: 5px;
+			border: none;
+		}
+
+		button:hover
+		{
+			background-color: white;
+			color: hotpink;
+		}
+	</style>
+</head>
+<body>
+	<center>
+		<a href="index.html"><i class="fa-solid fa-home"></i></a>
+		<!-- enlace para ver la tienda: recuerda que está en la carperta de fuera -->
+		<a href="./../index.php"><i class="fa-solid fa-shop"></i></a>
+		
+		<hr>
+		<h1>Alta de productos</h1>
+		<form action="grabapro.php" method="POST" enctype="multipart/form-data">
+			<input type="file" name="archivo" required>
+			<br>
+			<input type="text" name="titulo" placeholder="Título" maxlength="100" required>
+			<br>
+			<textarea name="descripcion" placeholder="Descripción" rows=6 maxlength="200" required></textarea>
+			<br>
+			<input type="text" name="precio" placeholder="Precio" required>
+			<br>
+			<button><i class="fa-solid fa-plus"></i></button>
+		</form>
+	</center>	
+
+</body>
+</html>
