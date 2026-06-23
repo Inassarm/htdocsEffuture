@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+    <style>
+        
+        i {
+            font-size: 20px;
+            margin: 15px;
+            cursor: pointer;
+            transition: color 0.3s;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>RESERVAS <span>0</span></h1>
+
+
+    <script>
+        function fondo_verde() {
+            $("i").css("color", "#2ecc71"); 
+        }
+
+      
+        for(var veces = 1; veces <= 100; veces++) {
+            $("body").append("<i class='fa fa-couch'></i>");
+        }
+
+       
+        $("body").on("click", "i", function(){
+            $(this).css("color", "red");
+        });
+
+        var numero=0;
+
+        $("i").on("click",function (){
+            $(this).css("color","red");
+            numero++;
+            $("span").text(numero);
+        })
+    </script>
+    
+</body>
+</html>

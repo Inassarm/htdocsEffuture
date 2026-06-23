@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <h1>Reservas</h1>
+    
+    <h2 id="seleccionado">Selecciona una butaca</h2>
+
+    <div>Cargando reservas...</div>
+
+    <script>
+        $.post(
+            "guardar.php", 
+            {},           
+            function(echoes) { 
+                $("div").html(echoes); //se meten dentro del html
+                $("i").on("click", function(){
+                    //alert($(this).text())
+                    $(this).children().css("color","red");
+                    $(this).css("color","red");
+                    var butaca = $(this).text();
+                    // 2. Capturamos el texto de la butaca y lo mostramos en el contenedor
+                   $("p").append(butaca);
+                })
+            }
+        );
+    </script>
+</body>
+</html>

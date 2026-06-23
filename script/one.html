@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <p>Viernes</p>
+    
+    <b onmouseover="fondo_amarillo()" onmouseleave="fondo_rojo()">Oleiros</b>
+    <input type="" name=""placeholder="Nombre" onkeyup="copiar()">
+    <input type="text" name="" placeholder="Nombre">
+    <h1 onmouseover="fondo_verde()">Coru</h1>
+    <button onclick="pon_sabado()">Pinchar</button>
+    <button onclick="fondo_rojo()">Rojo</button>
+
+    <script>
+        function copiar()
+        {
+            var eltexto;
+            eltexto = $("input").val();
+            $("b").text(eltexto);
+        }
+        function fondo_verde()
+        {
+            $("body").css("background-color", "lime");
+
+        }
+        function fondo_amarillo()
+        {
+            $("body").css("background-color", "yellow");
+        }
+        
+        function fondo_rojo()
+        {
+            $("body").css("background-color", "red");
+        }
+        
+        function pon_sabado()
+        {
+            $("p").text("Sábado");
+        }
+    </script>
+</body>
+</html>

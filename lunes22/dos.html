@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Alta de productos</h1>
+
+    <form id="form-producto">
+
+        <input id="nombre" type="text" placeholder="Título del producto"><br><br>
+        <textarea id="descripcion" placeholder="Descripción del producto"></textarea><br><br>
+        <input id="precio" type="number" placeholder="Precio"><br><br>
+        <button type="submit">Guardar Producto</button>
+    </form>
+    <button onclick="registrar()">Grabar</button>
+    <p></p>
+    <script>
+        function registrar()
+        {
+            var nom = $("input#nombre").val();
+            var des = $("#descripcion").val();
+            var pre = $("input").last().val();
+            $.post(
+                "buscar2.php",
+                {nombre:nom, descripcion:des, precio:pre},
+                function(echos)
+                {
+                    $("p").html(echos);
+                    $("input").val("");
+                    $("textarea").val("");
+                    $("#nombre").focus();
+                    //$("p").html(echos); $\rightarrow$ Toma lo que el servidor respondió (por ejemplo, un mensaje que diga "Producto guardado con éxito") y lo mete dentro del párrafo <p> para que el usuario lo vea.$("input").val(""); y $("textarea").val(""); $\rightarrow$ Borra todo lo que el usuario escribió en los formularios para dejarlos limpios y listos para el siguiente producto.$("#nombre").focus(); $\rightarrow$ Pone el cursor automáticamente en el campo del nombre para que puedas empezar a escribir otro producto de inmediato sin tener que hacer clic de nuevo.
+                }
+            );
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+
+
+<style>
+    body {
+                      
+        font-family: sans-serif; 
+        text-align: center;
+           
+}
+</style>
+</head>
+<body>
+    
+    <h2>Menú modo investigación</h2>
+    <ul style="display: flex; gap: 20px; list-style: none; justify-content: center;">
+        <li>
+            <a href="https://www.zara.com/es/" style="text-decoration: none; color:rgba(1, 28, 91, 0.344); cursor:pointer">Zara</a>
+        </li>
+        <li>
+            <a href="https://www.xunta.gal/portada" style="text-decoration: none; color:pink; cursor:pointer">Xunta de Galicia</a>
+        </li>
+        <li>
+            <a href="https://www.meteogalicia.gal" style="text-decoration: none; color:rgb(255, 167, 25); cursor:pointer">MeteoGalicia</a>
+        </li>
+    </ul>
+
+    <div>
+        <img src="hellokitty.jpg" width="120" alt="Hello Kitty">  
+    </div>
+
+    <form action="#" method="POST">
+        <label>Nombre:</label><br>
+        <input type="text" name="nombre" placeholder="Nombre"><br>
+        
+        <label>Apellidos:</label><br>
+        <input type="text" name="apellidos" placeholder="Apellidos"><br>
+        
+        <label>DNI:</label><br>
+        <input type="text" name="dni" placeholder="DNI"><br>
+
+        <label>Letra del DNI:</label><br>
+        <input type="text" name="letra" placeholder="Letra del DNI"><br>
+        
+        <label>Correo Electrónico:</label><br>
+        <input type="email" name="email" placeholder="Correo electrónico"><br>   
+        
+        <label>Contraseña:</label><br> 
+        <input type="password" name="contrasena" placeholder="Contraseña"><br>
+        
+        <label>Fecha de Nacimiento:</label><br>
+        <input type="date" name="fecha"><br>
+    
+        <label>Selecciona la provincia:</label><br>
+        <select name="provincia">
+            <option value="" disabled selected>Selecciona tu provincia</option>
+            <option value="acoruna">A Coruña</option>
+            <option value="lugo">Lugo</option>
+            <option value="ourense">Ourense</option>
+            <option value="pontevedra">Pontevedra</option>
+        </select><br>
+        
+        <label>Código Postal:</label><br>
+        <input type="text" name="postal" placeholder="Código Postal"><br><br>
+        
+        <input type="submit" value="Enviar" style="cursor:pointer; font-family: sans-serif;">
+    </form> 
+</body>
+</html>

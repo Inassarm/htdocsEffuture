@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    th, td {
+        border: 1px solid #ff6bd0; 
+        text-align: center;       
+        padding: 8px; 
+    }
+    th {
+        background-color: #f4f4f4; 
+    }
+</style>
+
+<body>
+    
+    <h2>Tabla de 2x2 !!!!</h2>
+    
+    <button onclick="colorTabla()">Cambiar color a tabla</button>
+    <button onclick="colorFila()">Cambiar color a primera fila</button>
+    <button onclick="copiarTabla()">Copiar tabla</button>
+    
+    <br><br>
+
+    <table id="miTabla">
+        <tr>
+          <th>Colores</th>
+          <th>Animales</th>
+        </tr>
+        <tr>
+          <td>A</td>
+          <td>B</td>
+        </tr>
+    </table>
+
+    <div id="contenedor-copia"></div>
+
+    <script>
+       
+        function colorTabla(){
+            $("table").css("background-color", "pink");
+        }
+
+    
+        function colorFila(){
+            $("tr:first th").css("background-color", "yellow");
+        }
+       
+        function copiarTabla(){
+           
+            $("#miTabla").clone().appendTo("#contenedor-copia");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+    <style>
+        /* Un pequeño truco visual para que cada nuevo input se ponga abajo */
+        
+        form{
+
+            text-align: center;
+            
+
+
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <form action="tu_servidor.php" method="POST" enctype="multipart/form-data">
+        <input type="text" placeholder="Nombre" name="nombre">
+        
+        <textarea placeholder="Descripcion" name="descripcion"></textarea>
+        
+        <p><input type="file" name="imagenes[]"></p>
+        
+        <button type="button" onclick="mas()">+</button>
+        <br><br>
+        
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        function mas()
+        {
+            // Añade un nuevo input file con los corchetes [] en el name
+            $("p").append("<input type='file' name='imagenes[]'>");
+        }
+    </script>
+    
+</body>
+</html>
