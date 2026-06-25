@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>Cambiar Fondo</title>
+</head>
+<body>
+
+    <button onclick="cambiar('red')">Rojo</button> //una llamada envío datos
+    <button onclick="cambiar('green')">Verde</button>
+    <button onclick="cambiar('yellow')">Amarillo</button>
+
+    <script>
+        function cambiar(colorinchi) {  //recibir datos
+            
+            $("body").css("background-color", colorinchi);
+        }
+    </script>
+
+</body>
+</html>
