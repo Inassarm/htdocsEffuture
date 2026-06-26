@@ -1,55 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <style>
-        input { width: 10%; text-align: center; }
-    </style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<style>
+		input
+		{
+			width: 10%;	
+		}
+	</style>
 </head>
 <body>
+	<h1>Ahorcado</h1>
+	<input type="text" maxlength="1" placeholder="Letra"
+	id="letra"> 
+	<button onclick="comprobar()">Comprobar</button>
+	<br>
+	<!-- la palabra oculta -->
+	<input type="text" value="C" readonly id="oculta1">
+	<input type="text" value="A" readonly id="oculta2">
+	<input type="text" value="S" readonly id="oculta3">
+	<input type="text" value="A" readonly id="oculta4">
+	<br>
 
-    <input id="letra" maxlength="1" placeholder="Letra">
-    <button onclick="comprobar()">Comprobar</button>
-    <br><br>
+	<!-- las coincidencias -->
+	<input type="text" id="acierto1">
+	<input type="text" id="acierto2">
+	<input type="text" id="acierto3">
+	<input type="text" id="acierto4">
 
-    <input type="text" value="C" readonly id="oculta1">
-    <input type="text" value="A" readonly id="oculta2">
-    <input type="text" value="S" readonly id="oculta3">
-    <input type="text" value="A" readonly id="oculta4">
-    <br><br>
+	<script>
+		function comprobar()
+		{
+			var loescrito = $("#letra").val().toUpperCase();
 
-    <input type="text" id="acierto1">
-    <input type="text" id="acierto2">
-    <input type="text" id="acierto3">
-    <input type="text" id="acierto4">
+			//vamos a comprobar la primera
+			var oculta1 = $("#oculta1").val();
+			if(loescrito == oculta1)
+			{
+				//son iguales
+				$("#acierto1").val(loescrito);
+			}
+			else
+			{
+				//no hago nada
+			}
 
-<script>
-function comprobar() {
-    var l = $("#letra").val().toUpperCase();
-    
-    if (l == oculta1) {
-        $("#acierto1").val(l);
-    }
-    var l = $("#letra").val().toUpperCase();
-     if (l == oculta2) {
-        $("#acierto2").val(l);
-    }
-     if (l == oculta3) {
-        $("#acierto3").val(l);
-    }
-    else{
+			// vamos a comprobar la segunda
+			var oculta2 = $("#oculta2").val();
+			if(loescrito == oculta2)
+			{
+				//son iguales
+				$("#acierto2").val(loescrito)
+			}
+			else
+			{
+				//no hago nada
+			}
 
-    }
+			//se entiende????
+			for(var i = 1; i <= 4; i++)
+			{
+				var letraoculta = $("#oculta"+i).val()
+				if(loescrito == letraoculta)
+				{
+					$("#acierto"+i).val(loescrito)
+				}
+			}
 
-    // Comprobar si ganó
-    setTimeout(() => {
-        if ($("#acierto1").val() == "C" && $("#acierto2").val() == "A" && $("#acierto3").val() == "S" && $("#acierto4").val() == "A") {
-            alert("¡Ganaste!");
-            location.reload();
-        }
-    }, 10);
-}
-</script>
-    
+
+		}
+	</script>
 </body>
 </html>

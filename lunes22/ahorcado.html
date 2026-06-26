@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ahorcado</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+        input {
+            width: 10%; 
+        }
+        .imagen-ahorcado {
+            margin-top: 15px;
+            width: 150px;
+            height: 150px;
+            display: block;
+        }
+        button{
+            font-family: Arial, Helvetica, sans-serif;
+            color:palevioletred;
+            border-width: 2%;
+            padding: 7px;
+            background-color: aquamarine;
+            border-radius: 15px;
+            cursor: pointer;
+            border-color: aquamarine;
+
+        }
+        button:hover{
+            color:rgb(255, 160, 192);
+            
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <h1>Ahorcado</h1>
+    <input type="text" maxlength="1" placeholder="Letra" id="letra"> 
+    <button onclick="comprobar()">Comprobar</button>
+    <br><br>
+
+    <img id="dibujo" src="./keropi2.png" class="imagen-ahorcado">
+    <br>
+
+    <input type="hidden" value="C" id="oculta1">
+    <input type="hidden" value="A" id="oculta2">
+    <input type="hidden" value="S" id="oculta3">
+    <input type="hidden" value="A" id="oculta4">
+    <br><br>
+
+    <input type="text" id="acierto1" readonly>
+    <input type="text" id="acierto2" readonly>
+    <input type="text" id="acierto3" readonly>
+    <input type="text" id="acierto4" readonly>
+
+    <script>
+        var fallos = 0;
+
+        function comprobar() {
+            var loescrito = $("#letra").val().toUpperCase();
+            
+            if (loescrito == "") return;
+
+            var huboAcierto = false;
+
+            for (var i = 1; i <= 4; i++) {
+                var letraoculta = $("#oculta" + i).val();
+                
+                if (loescrito == letraoculta) {
+                    $("#acierto" + i).val(loescrito);
+                    huboAcierto = true;
+                }
+            }
+            
+            if (huboAcierto == false) {
+                fallos++; 
+                $("#dibujo").attr("src", "./ahorcado" + fallos + ".png");
+                
+                if (fallos >= 7) {
+                    alert("Fin del juego!!!! :(   ");
+                    location.reload();  
+                    return; 
+                }
+            }
+
+            var letrasDescubiertas = 0;
+            for (var j = 1; j <= 4; j++) {
+                if ($("#acierto" + j).val() != "") {
+                    letrasDescubiertas++;
+                }
+            }
+
+            if (letrasDescubiertas == 4) {
+                    alert("¡Ganaste el juego! :) "); 
+                    location.reload();
+                
+            }
+
+            $("#letra").val("");
+        }
+    </script>
+
+</body>
+</center>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <a href="https://www.meteogalicia.gal/web/home">Tiempo</a>
+    <input type="text" name="nombre" placeholder="nombre" id="nombre" onfocus="hacer()">
+
+    <img src="./keropi.png" width="20%" onmouseover="cambiar()"> //enviar
+    
+    <script>
+        function cambiar(){
+            $("img").attr("src", "./keropi2.png");
+        }
+        $("a").prop("href","https://www.zara.com/es/");
+        $("a").attr("href","https://www.zara.com/es/");
+        $("input").attr("type","number");
+        $("input").prop("readonly", true);
+        $("input").attr("onfocus", "deshacer()");
+        $("input").attr("onclick", "pintar()");
+        alert($("input").attr("id"));
+        $("input").attr("placeholder","EDAD");
+    </script>
+</body>
+</html>
