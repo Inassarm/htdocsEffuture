@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+	<input>
+	<input>
+	<input>
+	<input>
+	<input>
+	<button onclick="relleno()">Rellenar</button>
+	
+	<script>
+		var miarray = []
+
+		function relleno()
+		{
+			$("input").each(function(){
+				miarray.push($(this).val())
+			})
+
+			$("body").append("<button onclick='mostrar()'>Mostrar</button>")
+		}	
+
+		function mostrar()
+		{
+			for(var i = 0; i< miarray.length; i++)
+			{
+				$("body").append("<h3>"+miarray[i]+"</h3>");
+			}
+		}
+
+
+	</script>
+</body>
+</html>

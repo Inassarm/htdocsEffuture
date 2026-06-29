@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<p></p>
+<button onclick="$('p').text(personas[2])">Mostrar x</button>
+<button onclick="$('p').text(recorrer())">Mostrar todo BTS</button>
+<script>
+    var personas = ["Jungkook","Tae","Rm","Jin","Jimin","JHope","Suga"]
+    function recorrer(){
+        $(personas).each(function(){
+        $("p").append(this + "")
+        
+        })
+    }
+
+    function recorrererefor(){
+        for(var i = 0; i.length;i++){
+            $("p").append(personas[i]+"");
+        }
+    }
+
+
+</script>
+
+
+</body>
+</html>

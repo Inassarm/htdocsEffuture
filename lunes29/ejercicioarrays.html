@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array Simple</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <input> <br> 
+    <input> <br>
+    <input><br>
+    <input><br>
+    <input><br>
+
+    <button type="button" id="btnCrear" onclick="creararray()">Crear Array</button>
+    <button type="button" id="btnMostrar" style="display:none; background-color: pink;" onclick="mostrararray()">Mostrar Array</button>
+    
+    <p></p>
+    <h3></h3>
+
+    <script>
+        var miArray = [];
+
+        function creararray() {
+            miArray = []; 
+
+            // cada input uno por uno
+            $("input").each(function() {
+              
+                miArray.push($(this).val()); 
+            });
+
+
+            $("#btnCrear").hide();  
+            $("#btnMostrar").show(); 
+        }
+
+        function mostrararray() {
+            $("h3").text("Array en H3: " +miArray);
+        }
+        
+    </script>
+    
+</body>
+</html>

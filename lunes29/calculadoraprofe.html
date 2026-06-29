@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+	<p></p>
+	<input type="number" placeholder="Número 1">
+	<br>
+	<input type="number" placeholder="Número 2">
+	<br>
+	<button onclick="gestion('s')">+</button>
+	<button onclick="gestion('r')">-</button>
+	<button onclick="gestion('m')">*</button>
+	<button onclick="gestion('d')">/</button>
+
+	<script>
+		function gestion(operacion)
+		{
+			var numero1 = $("input").first().val();
+			var numero2 = $("input").last().val();
+			var total = 0;
+
+			if(operacion == "s")
+			{
+				total = sumar(numero1, numero2);
+			}
+
+			if(operacion == "r")
+			{
+				total = restar(numero1, numero2);
+			}
+
+			if(operacion == "m")
+			{
+				total = multiplicar(numero1, numero2);
+			}
+
+			if(operacion == "d")
+			{
+				total = dividir(numero1, numero2);
+			}
+
+			mostrar(total);
+		}
+
+		function mostrar(dato)
+		{
+			$("p").text(dato);
+		}
+
+		function sumar(n1, n2)
+		{
+			return parseInt(n1) + parseInt(n2);
+		}
+
+		function restar(a, b)
+		{
+			var res = a - b;
+			return res;
+		}
+
+		function multiplicar(x, y)
+		{
+			var multi = x * y;
+			return multi;
+		}
+
+		function dividir(n, m)
+		{
+			if(m != 0)
+			{
+				return n / m;
+			}
+			else
+			{
+				return "Error";
+			}
+		}
+	</script>
+
+</body>
+</html>

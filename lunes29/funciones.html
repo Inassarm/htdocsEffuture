@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <p></p>
+    <button onclick="rellenar()">Rellenar</button>
+    <button onclick="saludar('isa')">Saludar</button>
+    <button onclick="sumar(20, 20)">sumo</button>
+    <button onclick="sumar(multiplicar(20, 20))">multi</button>
+    <button onclick="ver_resultado()">result</button>
+    <script>
+
+        alert($("textarea").val())
+        function rellenar(){
+            $("p").text("Buenos dìas");
+        }
+        function saludar(variable){
+            $("p").text("Buenos dìas " + variable);
+        }
+        function despedirse(variable){
+            $("p").text("Chao"+variable)
+        }
+        function multiplicar(num1, num2){
+            var resultado = num1 * num2
+            return resultado;
+        }
+
+        function sumar(n1, n2=0){
+            var total = n1 + n2
+            $("p").text(total);
+        }
+
+        function ver_resultado(){
+
+            var total = multiplicar(5,8);
+            $("p").text(total);
+        }
+
+    </script>
+</body>
+</html>
