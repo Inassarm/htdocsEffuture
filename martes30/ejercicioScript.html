@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        
+        li:not(.pendiente) { text-decoration: line-through; color: gray; }
+    </style>
+</head>
+<body>
+
+    <input type="text" id="tarea">
+    <button id="add">Agregar</button>
+
+    <p>Total: <span id="total">0</span> | Pendientes: <span id="pendientes">0</span></p>
+    
+    <ul id="lista"></ul>
+
+    <script>
+        
+        $("#add").click(function() {
+            var txt = $("#tarea").val().trim();
+            if (txt) {
+                $("#lista").append("<li class='pendiente'>" + txt + "</li>");
+                $("#tarea").val(""); 
+                contar(); 
+            }
+        });
+
+        
+        $("#lista").on("click", "li", function() {
+            $(this).toggleClass("pendiente"); 
+            contar(); // Recuenta
+        });
+
+        
+        function contar() {
+            var total = $("#lista li").length;
+            var pendientes = $("#lista .pendiente").length;
+
+            $("#total").text(total);
+            $("#pendientes").text(pendientes);
+        }
+    </script>
+
+</body>
+</html>

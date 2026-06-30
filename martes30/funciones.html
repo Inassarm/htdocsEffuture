@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <input type="text" id="miInput" placeholder="con ID">
+    <button onclick="recogerconid()">ID</button>
+
+    <br><br>
+
+    <input type="text" placeholder="sin ID">
+    <button onclick="recoger()">sin ID</button>
+    
+    <br><br>
+    
+    <button onclick="color()">Cambiar Color</button>
+    
+    <br><br>
+    
+    <button onclick="valores()">Nombres nuevos</button>
+
+    <button onclick="valoresDos()">Más nuevos</button>
+
+    <script>
+
+        var miArray = ["harry", "michael", "Barbie"];
+
+        function recogerconid() {
+            var valor = $("#miInput").val();
+            alert("Valor recogido con ID: " + valor);
+        }
+
+        function recoger() {
+            var valor2 = $("input:eq(1)").val();
+            alert("Valor recogido sin ID: " + valor2);
+        }
+
+        function color() {
+            $("input").css("background-color", "yellow");
+        }
+
+        function valores() {
+           
+            miArray.push("Emma", "Carl");
+        
+            alert("Array actual: " + miArray.join(", "));
+        }
+
+         function valoresDos() {
+           
+            miArray.push("Miguelitop");
+        
+            alert("Array actual 2.0: " + miArray.join(", "));
+        }
+
+        function mover(dato){
+            $("p").text(dato)
+
+        }
+
+
+        //recorrer todas las etiquetas input y el valor de esos se añada al array que ya se tenía
+
+       function recorrer() {
+           
+            $("input").each(function() {
+                var valorDelInput = $(this).val();
+                
+                
+                miArray.push(valorDelInput);
+            }); 
+
+        
+            alert("Contenido del array: " + miArray.join(", "));
+        } 
+
+        function readonly() {
+        $("input").each(function() {
+       
+        if ($(this).attr("type") === "text") {
+           
+            $(this).prop("readonly", true);
+        } else {
+           
+            $(this).prop("readonly", false);
+        }
+    
+    });
+        function readonly() {
+            $("input[type=text]").prop("readonly",true);
+    
+    };
+
+
+}
+        // si el input que se está recorriendo es de tipo text (ATR) se le añada la propiedad (PROP) readonly
+    </script>
+
+</body>
+</html>

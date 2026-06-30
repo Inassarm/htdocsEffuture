@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>loista tatreas <span></span></h1>
+    <input type="text" name=""><button onclick="agregar()">agregar</button>
+    <br>
+    <ul></ul>
+    <script>
+        var contador = 0;
+        function agregar(){
+            var valor = $("input").val()
+            if (valor != ""){
+
+            $("ul").append("<li onclick='marcar(this)'>"+valor+"</li>")
+            $("input").val("")
+            $("input").focus()
+            contador++;
+            $("span").text(contador)
+        }
+    }
+    function marcar(este)
+    {
+        $(este).css("text-decoration", "line-through")
+    }
+
+    </script>
+    
+</body>
+</html>
